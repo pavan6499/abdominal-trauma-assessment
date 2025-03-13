@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abdominal Trauma Assessment</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <style>
+        body {
+            background: linear-gradient(135deg, #dfe6e9, #b2bec3);
+            font-family: 'Cambria', sans-serif;
+            color: #212529;
+        }
+        .container {
+            max-width: 500px;
+        }
+        .assessment-card {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 12px;
+            padding: 30px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease-in-out;
+        }
+        .assessment-card:hover {
+            transform: scale(1.02);
+        }
+        .form-check label {
+            font-size: 18px;
+            color: #212529; /* Black font color */
+        }
+        .form-check-input {
+            width: 20px;
+            height: 20px;
+            border: 2px solid #000;
+        }
+        .form-check-input:checked {
+            background-color: #007bff;
+            border-color: #0056b3;
+        }
+        .btn-custom {
+            background-color: #000;
+            border: none;
+            font-size: 18px;
+            padding: 12px;
+            width: 100%;
+            border-radius: 8px;
+            color: white;
+            transition: background 0.3s, transform 0.2s;
+        }
+        .btn-custom:hover {
+            background-color: #333;
+            transform: scale(1.03);
+        }
+        .result-box {
+            padding: 20px;
+            border-radius: 10px;
+            font-size: 18px;
+            font-weight: bold;
+            text-align: center;
+            color: #212529; /* Black font color */
+        }
+    </style>
+</head>
+<body class="d-flex justify-content-center align-items-center vh-100">
+    <div class="container">
+        <div class="assessment-card">
+            <h2 class="text-center mb-4">
+                <i class="fas fa-heartbeat"></i> Abdominal Trauma Assessment
+            </h2>
+            <form method="post">
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input" name="abdominal_pain" value="yes" id="abdominal_pain">
+                    <label class="form-check-label" for="abdominal_pain">Abdominal Pain</label>
+                </div>
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input" name="tenderness" value="yes" id="tenderness">
+                    <label class="form-check-label" for="tenderness">Tenderness</label>
+                </div>
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input" name="distension" value="yes" id="distension">
+                    <label class="form-check-label" for="distension">Abdominal Distension</label>
+                </div>
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input" name="bruising" value="yes" id="bruising">
+                    <label class="form-check-label" for="bruising">Bruising</label>
+                </div>
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input" name="history_trauma" value="yes" id="history_trauma">
+                    <label class="form-check-label" for="history_trauma">History of Trauma</label>
+                </div>
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input" name="hemodynamic_instability" value="yes" id="hemodynamic_instability">
+                    <label class="form-check-label" for="hemodynamic_instability">Hemodynamic Instability</label>
+                </div>
+                <button type="submit" class="btn btn-custom mt-4">Assess Risk</button>
+            </form>
+            
+            {% if result %}
+                <div class="result-box mt-4 bg-{{ result.color }}">
+                    <h4>{{ result.level }}</h4>
+                    <p>{{ result.message }}</p>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>
